@@ -27,8 +27,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # LayoutProps/PageProps are generated into .next/types, which doesn't exist on a fresh checkout
       - name: Typecheck
-        run: npx tsc --noEmit
+        run: npx next typegen && npx tsc --noEmit
 
       - name: Unit tests
         run: npx vitest run
